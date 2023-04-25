@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, FlatList, Pressable,TouchableOpacity, Button } 
 import {useState, useEffect} from 'react'
 import React from 'react';
 
-import {firebase} from '../../../config';
+import {firebase} from '../../../../config';
 import { useNavigation } from '@react-navigation/core';
 import { useRoute } from '@react-navigation/core';
 

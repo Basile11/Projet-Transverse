@@ -1,61 +1,91 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import ButtonHome from '../../components/ButtonHome/ButtonHome';
 import React from 'react';
-
-import Cave from '../Cave/Cave';
-import Spiritueux from '../Spiritueux/Spiritueux';
-import Biere from '../Biere/Biere';
-import Soft from '../Soft/Soft';
-
 import { useNavigation } from '@react-navigation/core';
+import { StyleSheet, Text, View, StatusBar, Dimensions, Button } from 'react-native';
+
+import Footer from '../../components/Footer/Footer.js';
+import ButtonHome from '../../components/ButtonHome/ButtonHome.js';
+import HeaderHome from '../../components/Header/HeaderHome.js';
+
+import Stock from '../Stock/Stock'
+import Commande from '../Commande/Commande'
+import Historique from '../Historique/Historique'
+import Statistique from '../Statistiques/Stats.js'
+
+import ListButton from '../../components/ListButton/ListButton.js';
+import Menu_bar from '../../components/Menu_bar.js';
+
 
 
 export default function Home() {
   const navigation = useNavigation();
 
-  const Cavepress = () => {
-    navigation.navigate(Cave);
+  const { width, height } = Dimensions.get('window');
+
+  const Stockpress = () => {
+    navigation.navigate(Stock);
   }
-  const Bierepress = () => {
-    navigation.navigate(Biere);
+  const Commandepress = () => {
+    navigation.navigate(Commande);
   }
-  const Softpress = () => {
-    navigation.navigate(Soft);
+  const Historiquepress = () => {
+    navigation.navigate(Historique);
   }
-  const Spiritpress = () => {
-    navigation.navigate(Spiritueux);
+  const Statistiquepress = () => {
+    navigation.navigate(Statistique);
   }
 
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor : '#F5F5F5',
+    },
+  
+    header: {
+      top: 0,
+    },
+  
+    list: {
+      flex : 1,
+      position: 'absolute',
+      top: height*0.5,
+    },
+  
+    button: {
+      flex : 1,
+      position: 'absolute',
+      top: height*0.26,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  
+    footer: {
+      flex : 1,
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
+  
+  });
+  
   return (
-    <View style={[styles.container]}>      
-      <StatusBar style="auto" />
-        <View style={styles.button}>
-          <ButtonHome text='Cave' onPress={Cavepress}/>
-          <ButtonHome text='Biere' onPress={Bierepress}/>
-          <ButtonHome text='Soft' onPress={Softpress}/>
-          <ButtonHome text='Spiritueux' onPress={Spiritpress}/>
-        </View>
+    <View style={[styles.container]}> 
+      <StatusBar barStyle="light-content" />
+      <View style={styles.footer}>
+        <Footer/>
+      </View> 
+      
+      <View style={styles.header}>
+        <HeaderHome name='Le Train Bleu'/>
+      </View>
+
+      <View style={styles.button}>
+        <ButtonHome text='Stock' onPress={Stockpress} img='../../../img/product.png' color='rgba(151, 181, 235, 0.5)'/>
+        <ButtonHome text='Commande' onPress={Commandepress} img='../../../img/list.png' color='rgba(137, 205, 136, 0.7)'/>
+        <ButtonHome text='Historique' onPress={Historiquepress} img='../../../img/time-management.png' color='rgba(228, 191, 191, 0.5)'/>
+        <ButtonHome text='Statistique' onPress={Statistiquepress} img='../../../img/stats.png' color='rgba(209, 193, 235, 0.7)'/>
+      </View>
+
     </View>
-    
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 100,
-    // flex: 1,
-    // backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    // alignSelf: "flex-start",
-    
-
-  },
-  button: {
-    // flex:2,
-    // flexDirection: "row",
-    // flexWrap: "wrap",
-    // flexGrow: 1,
-  },
-});
