@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {ImageBackground, Image, StyleSheet, Text, View, Dimensions, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import Searchbar from '../Searchbar';
+
 
 export default function HeaderRest ({name}){    
     const [Name] = useState(name);
@@ -67,12 +69,24 @@ export default function HeaderRest ({name}){
           backgroundColor: '#F5F5F5',
       },
 
-      Profil: {
+      // Profil: {
+      //   position: 'absolute',
+      //   height : height * 0.06,
+      //   width : height * 0.06,
+      //   top : height * 0.035,
+      //   left : '10%',
+      // },
+
+      utilisateur: {
         position: 'absolute',
-        height : height * 0.06,
-        width : height * 0.06,
-        top : height * 0.035,
+        height : height * 0.045,
+        width : height * 0.045,
+        top : height * 0.18 - height * 0.140,
+        // top : height * 0.055,
+        // top: height * 0.18 - height * 0.125,
         left : '10%',
+        // right : '10%',
+        // left : '8%',
       },
       });
       
@@ -86,13 +100,14 @@ export default function HeaderRest ({name}){
             <View style={styles.cercle_haut}></View>
             <View style={styles.cercle_bas}></View>
 
-            {/* <View style={styles.text}>
-                <Text>{name}</Text>    
-            </View> */}
-
             <Text style={styles.text}>{name}</Text>
+            
+            <TouchableOpacity onPress={ProfilPress} style={styles.utilisateur}>
+              <Image source={require('../../../img/utilisateur.png')} style={styles.utilisateur}/> 
+            </TouchableOpacity>
 
-            {/* <Text style={styles.text}>Le Train Bleu</Text> */}
+            <Searchbar/>
+
 
         </View>
     );

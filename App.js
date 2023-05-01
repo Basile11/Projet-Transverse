@@ -13,13 +13,17 @@ import Commande from './src/screen/Commande/Commande';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+  
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
-        headerShown: false
+        headerShown: false,
+        animation: 'none' 
         }}>
       
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Option" component={Option} />
         <Stack.Screen name="Notif" component={Notif} />
         <Stack.Screen name="Historique" component={Historique} />
@@ -27,7 +31,7 @@ export default function App() {
         <Stack.Screen name="Commande" component={Commande} />
         <Stack.Screen name="Scan" component={Scan} />
 
-        <Stack.Screen name="Stock" component={Stock} />
+        <Stack.Screen name="Stock" component={Stock}/>
 
       </Stack.Navigator>
     </NavigationContainer>
