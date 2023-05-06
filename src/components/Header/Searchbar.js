@@ -43,7 +43,7 @@ export default function Searchbar() {
                 <Image source={require('../../img/loupe.png')}style={styles.icon_search}/>
             </TouchableOpacity> */}
 
-            <Image source={require('../../img/loupe.png')}style={styles.icon_search}/>  
+            <Image source={require('../../../img/loupe.png')}style={styles.icon_search}/>  
             
         </View>
     );

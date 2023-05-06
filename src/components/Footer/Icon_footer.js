@@ -2,9 +2,6 @@ import { View, Image, Text, TouchableOpacity, StyleSheet, Dimensions } from 'rea
 import React, { useState }from 'react'
 import { useNavigation } from '@react-navigation/native';
 
-import Home from '../../screen/Home/Home';
-import Option from '../../screen/Option/Option';
-import Notif from '../../screen/Notif/Notif';
 
 export default function Icon_footer({text, onPress}) {
   const [texte] = useState(text);
@@ -21,16 +18,6 @@ export default function Icon_footer({text, onPress}) {
   });
 
   const navigation = useNavigation();
-      const Optionpress = () => {
-        navigation.navigate(Option);
-      }
-      const Homepress = () => {
-        navigation.navigate(Home);
-
-      }
-      const Notificationpress = () => {
-        navigation.navigate(Notif);
-      }
 
   return (
 

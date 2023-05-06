@@ -1,47 +1,107 @@
-import { StyleSheet, Text, View } from 'react-native';
-import Searchbar from '../../components/Searchbar.js';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Button } from 'react-native';
+import Searchbar from '../../components/Header/Searchbar.js';
 
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 
-import Home from '../Home/Home';
-import Option from '../Option/Option';
-import Scan from '../Scan/Scan.js';
-import Notif from '../Notif/Notif.js';
+
+import Cave from './Cave/Cave.js';
 
 import HeaderRest from '../../components/Header/HeaderRest.js';
 import Footer from '../../components/Footer/Footer.js';
+import ButtonHome from '../../components/ButtonHome/ButtonHome.js';
 
-const Stock = () => {
+
+
+export default function Stock() {
   const navigation = useNavigation();
 
-  const Optionpress = () => {
-    navigation.navigate(Option);
+  const CavePress = () => {
+    navigation.navigate(Cave);
   }
-  const Homepress = () => {
-    navigation.navigate(Home);
-  }
-  const Scanpress = () => {
-    navigation.navigate(Scan);
-  }
-  const Notificationpress = () => {
-    navigation.navigate(Notif);
-  }
+
+  const { width, height } = Dimensions.get('window');
+
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor : '#F5F5F5',
+    },
+  
+    header: {
+      // position: 'absolute',
+      top: 0,
+    },
+
+    name:{
+      position: 'absolute',
+      width: 239,
+      height: 53,
+      left: 44,
+      top: 100,
+      fontSize: 40,
+      Lineheight: 53,
+      color: '#FFFFFF',
+    },
+  
+    localisation: {
+      position: 'absolute',
+      width: 147,
+      height: 35,
+      left: 125,
+      top: 165,
+      fontSize: 28,
+      color: '#97B5EB',
+    },
+  
+    button: {
+      flex : 1,
+      position: 'absolute',
+      top: height*0.26,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  
+    footer: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
+
+    Test: {
+      position: 'absolute',
+      top: height*0.5,
+      left: width*0.5,
+      width: 100,
+      height: 100,
+      backgroundColor: 'red',
+    },
+  });
 
   return (
     <View>
       <View style={[styles.container]}> 
         
-        {/* <Searchbar/> */}
+        {/* <Button style={styles.button} title="Go to Cave" onPress={() => navigation.navigate(Cave)}  /> */}
+
+        {/* <TouchableOpacity style={styles.button} onPress={CavePress}>
+          <Text>Cliquez ici</Text>
+        </TouchableOpacity> */}
+
         
 
         
         <View style={styles.footer}>
-          <Footer/>
+          <Footer color='#F5F5F5'/>
         </View>
 
         <View style={styles.header}>
           <HeaderRest name='Stock'/>
+        </View>
+
+        <View style={styles.button}>
+          <ButtonHome text='Cave' onPress={CavePress} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
         </View>
 
       </View>
@@ -49,45 +109,4 @@ const Stock = () => {
 
   );
 }
-export default Stock;
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor : '#F5F5F5',
-  },
-
-  name:{
-    position: 'absolute',
-    width: 239,
-    height: 53,
-    left: 44,
-    top: 100,
-    fontSize: 40,
-    Lineheight: 53,
-    color: '#FFFFFF',
-  },
-
-  localisation: {
-    position: 'absolute',
-    width: 147,
-    height: 35,
-    left: 125,
-    top: 165,
-    fontSize: 28,
-    color: '#97B5EB',
-  },
-
-  button: {
-    marginTop: 250,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    
-  },
-});

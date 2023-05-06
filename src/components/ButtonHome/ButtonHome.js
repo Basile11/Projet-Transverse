@@ -63,14 +63,12 @@ export default function ButtonHome({text, onPress, img, color}) {
         {/* <TouchableOpacity onPress={onPress} style={styles.button}>
             <View>
             <View style={{backgroundColor: color, ...styles.cadre}}>
-                <Image source={require(image)}
-                style={{ width: 30, height: 30}}
-                />
-              </View>
-              <Text style={styles.text}>{text}</Text>
+                <Image source={image} style={{ width: '50%', height: '50%'}}/>
             </View>
-            <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
-          </TouchableOpacity> */}
+              <Text style={styles.text}>{text}</Text>
+          </View>
+          <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
+        </TouchableOpacity> */}
         
         
         {texte === 'Stock' ? (
@@ -127,7 +125,20 @@ export default function ButtonHome({text, onPress, img, color}) {
             <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
           </TouchableOpacity>
 
-        ) : (
+        ) : texte === 'Cave' ?(
+            <TouchableOpacity onPress={onPress} style={styles.button}>
+              <View>
+                <View style={{backgroundColor: '#B83052', ...styles.cadre}}>
+                  <Image source={require('../../../img/stats.png')}
+                  style={{ width: '50%', height: '50%'}}
+                  />
+                </View>
+                <Text style={styles.text}>{text}</Text>
+              </View>
+              <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
+            </TouchableOpacity>
+  
+          ) : (
           <Text>Section introuvable</Text>
         )}
       </View>

@@ -1,14 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 import ButtonHome from '../../components/ButtonHome/ButtonHome.js';
-import Searchbar from '../../components/Searchbar.js';
+import Searchbar from '../../components/Header/Searchbar.js';
 
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 
-import Home from '../Home/Home';
-import Option from '../Option/Option';
-import Scan from '../Scan/Scan.js';
-import Notif from '../Notif/Notif.js';
+
 
 import HeaderRest from '../../components/Header/HeaderRest.js';
 import Footer from '../../components/Footer/Footer.js';
@@ -16,18 +13,6 @@ import Footer from '../../components/Footer/Footer.js';
 const Historique = () => {
   const navigation = useNavigation();
 
-  const Optionpress = () => {
-    navigation.navigate(Option);
-  }
-  const Homepress = () => {
-    navigation.navigate(Home);
-  }
-  const Scanpress = () => {
-    navigation.navigate(Scan);
-  }
-  const Notificationpress = () => {
-    navigation.navigate(Notif);
-  }
 
   return (
     <View>
@@ -38,7 +23,7 @@ const Historique = () => {
 
         
         <View style={styles.footer}>
-          <Footer/>
+          <Footer color='#F5F5F5'/>
         </View>
 
         <View style={styles.header}>

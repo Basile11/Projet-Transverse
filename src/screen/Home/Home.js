@@ -11,9 +11,6 @@ import Commande from '../Commande/Commande'
 import Historique from '../Historique/Historique'
 import Statistique from '../Statistiques/Stats.js'
 
-import ListButton from '../../components/ListButton/ListButton.js';
-import Menu_bar from '../../components/Menu_bar.js';
-
 
 
 export default function Home() {
@@ -72,7 +69,8 @@ export default function Home() {
     <View style={[styles.container]}> 
       <StatusBar barStyle="light-content" />
       <View style={styles.footer}>
-        <Footer/>
+        {/* <FooterHome color='#F5F5F5'/> */}
+        <Footer color='#F5F5F5'/>
       </View> 
       
       <View style={styles.header}>
@@ -80,10 +78,10 @@ export default function Home() {
       </View>
 
       <View style={styles.button}>
-        <ButtonHome text='Stock' onPress={Stockpress} img='../../../img/product.png' color='rgba(151, 181, 235, 0.5)'/>
-        <ButtonHome text='Commande' onPress={Commandepress} img='../../../img/list.png' color='rgba(137, 205, 136, 0.7)'/>
-        <ButtonHome text='Historique' onPress={Historiquepress} img='../../../img/time-management.png' color='rgba(228, 191, 191, 0.5)'/>
-        <ButtonHome text='Statistique' onPress={Statistiquepress} img='../../../img/stats.png' color='rgba(209, 193, 235, 0.7)'/>
+        <ButtonHome text='Stock' onPress={Stockpress} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
+        <ButtonHome text='Commande' onPress={Commandepress} img={require('../../../img/list.png')} color='rgba(137, 205, 136, 0.7)'/>
+        <ButtonHome text='Historique' onPress={Historiquepress} img={require('../../../img/time-management.png')} color='rgba(228, 191, 191, 0.5)'/>
+        <ButtonHome text='Statistique' onPress={Statistiquepress} img={require('../../../img/stats.png')} color='rgba(209, 193, 235, 0.7)'/>
       </View>
 
     </View>
