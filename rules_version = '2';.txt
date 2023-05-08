@@ -1,0 +1,45 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	
+    match /Users/{userID}{
+    	allow read: if false;
+    }
+    
+    
+    // Tous les documents de la collection Bars : accessible uniquement aux utilisateurs autorisés
+    match /Bars/{barID} {
+      allow read: if isUserAuthorized(barID);
+      allow delete: if isUserAdmin(barID);
+    
+      
+    }
+    
+    // Autorisation sous-collection : accessible uniquement aux utilisateurs autorisés
+    match /Bars/{barID}/Autorisations/{document=**} {
+      allow read: if isUserAuthorized(barID);
+      allow write: if isUserAdmin(barID);
+    }
+    
+    // Autorisation Stock
+    match /Bars/{barID}/Stock/{document=**} {
+      allow read, write: if isUserAuthorized(barID);
+    }
+    
+    
+    //Fonctions
+
+    // Fonction isUserAuthorized pour vérifier si l'utilisateur est admin dans le bar
+    function isUserAdmin(barID) {
+      return request.auth != null && get(/databases/$(database)/documents/Bars/$(barID)/Autorisations/Admins).data.keys().hasAny([request.auth.uid]);
+    }
+
+    // Fonction isUserAuthorized pour vérifier si l'utilisateur est autorisé pour accéder au bar
+    function isUserAuthorized(barID) {
+      return request.auth != null && (get(/databases/$(database)/documents/Bars/$(barID)/Autorisations/Users).data.keys().hasAny([request.auth.uid]) || isUserAdmin(barID));
+    }
+    
+
+  }
+}
