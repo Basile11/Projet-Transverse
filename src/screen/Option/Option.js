@@ -1,98 +1,91 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/core';
-import { StyleSheet, Text, View, Dimensions, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
-import Footer from '../../components/Footer/Footer.js';
+import Icon_menu from '../../components/Menu_bar.js';
 
-const PARAM = [
-  { id: '1', title: 'Général'},
-  { id: '2', title: 'Utilisateurs'},
-  { id: '3', title: 'Sécurité'},
-  { id: '4', title: 'Aide'},
-  { id: '5', title: 'A propos'},
-  { id: '6', title: 'Déconnexion'},
-];
+import Home from '../Home/Home';
+import Scan from '../Scan/Scan.js';
+import Notif from '../Notif/Notif.js';
 
-export default function Option() {
+const Option = () => {
   const navigation = useNavigation();
 
-  const { width, height } = Dimensions.get('window');
-
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor : 'black',
-    //   alignItems: 'center',
-    },
-    page: {
-        position: 'absolute',
-        top: 0,
-    },
-    
-    title: {
-        position: 'absolute',
-        top: height*0.13,
-        color: 'white',
-        fontSize: 40,
-        fontWeight: 'bold',
-        left: width*0.075,
-    },
-    flatList: {
-      position: 'absolute',
-      top: height*0.3,
-      bottom: height*0.095,
-      flex: 1,
-      width: width,
-      shadowColor: 'black',
-      shadowOffset: {width: 0, height: 5},
-      shadowOpacity: 0.2,
-      shadowRadius: 4,
-    },
-    item: {
-      position: 'relative',
-      flexDirection: 'row',
-      width: width * 0.85,
-      height: height * 0.09,
-      height: height * 0.075,
-      left: width*0.075,
-      // backgroundColor: '#F5F5F5',
-      backgroundColor: 'black',
-      alignItems: 'center',
-      // borderTopWidth: 1,
-      borderBottomWidth: 2,
-      borderColor: 'white',
-    },
-    name: {
-      position: 'absolute',
-      fontSize: 21,
-      left : width*0.05,
-      fontWeight: 'bold',
-      color: 'white',
-    },
-  
-  });
-  
-  const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.item}>
-      <Text style={styles.name}>{item.title}</Text>
-    </TouchableOpacity>
-  );
+  const Optionpress = () => {
+    navigation.navigate(Option);
+  }
+  const Homepress = () => {
+    navigation.navigate(Home);
+  }
+  const Scanpress = () => {
+    navigation.navigate(Scan);
+  }
+  const Notificationpress = () => {
+    navigation.navigate(Notif);
+  }
 
   return (
-    <View style={[styles.container]}> 
+    <View>
+      <View style={[styles.container]}> 
+        <View style={styles.menu}><Icon_menu text='Option' onPress={Homepress}/></View>
+        {/* <View style={styles.logo} ><Image source={require('../../../img/product.png')}style={{ width: 150, height: 150}}/></View> */}
         
-        <View style={styles.footer}>
-            <Footer color='black'/>
-        </View> 
-        <View style={styles.page}>
-            <Text style={styles.title}>Paramètres </Text>
+        <View style={styles.Option}>
+          <Text style={styles.profil}>{'Mon Profil'}</Text>
+          <Text style={styles.settings}>{'Paramètres'}</Text>
+          <Text style={styles.logout}>{'Deconnexion'}</Text>
         </View>
-        <FlatList
-          data={PARAM}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          style={styles.flatList}
-        />
+
+      </View>
     </View>
-    
+
   );
 }
+export default Option;
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 100,
+    backgroundColor: '#2F3031',
+  },
+
+  menu: {
+    position: 'absolute',
+    top: 70,
+    right: 0,
+  },
+
+  logo: {
+    margin: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  Option: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    marginTop: 40,
+  },
+
+  profil:{
+    marginBottom: 25,
+    fontWeight: 400,
+    fontSize: 30,
+    color: '#FFFFFF',
+  },
+
+  settings:{
+    marginBottom: 225,
+    // fontWeight: 400,
+    fontSize: 30,
+    color: '#FFFFFF',
+  },
+
+  logout:{
+    // fontWeight: 400,
+    fontSize: 30,
+    color: '#FFFFFF',
+  },
+
+});

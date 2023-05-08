@@ -5,12 +5,26 @@ import { StyleSheet, Text, View } from 'react-native';
 // import Icon_menu from '../../components/Menu_bar.js';
 // import Back from '../../components/back.js';
 
-
+import Home from '../Home/Home';
+import Option from '../Option/Option';
+import Notif from '../Notif/Notif.js';
 
 
 const Scan = () => {
   const navigation = useNavigation();
 
+  const Optionpress = () => {
+    navigation.navigate(Option);
+  }
+  const Homepress = () => {
+    navigation.navigate(Home);
+  }
+  const Scanpress = () => {
+    navigation.navigate(Scan);
+  }
+  const Notificationpress = () => {
+    navigation.navigate(Notif);
+  }
 
   return (
     <View>

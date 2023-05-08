@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {ImageBackground, Image, StyleSheet, Text, View, Dimensions, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-// import Profil from '../../screen/Profil/Profil';
 
 export default function HeaderHome (name){    
     const [Name] = useState(name);
@@ -10,7 +9,7 @@ export default function HeaderHome (name){
 
     const navigation = useNavigation();
       const ProfilPress = () => {
-        navigation.navigate('Profil');
+        navigation.navigate(Option);
       }
     
 
@@ -71,30 +70,29 @@ export default function HeaderHome (name){
 
       utilisateur: {
         position: 'absolute',
-        height : height * 0.05,
-        width : height * 0.05,
-        top : height * 0.18 - height * 0.147,
+        height : height * 0.045,
+        width : height * 0.045,
+        top : height * 0.18 - height * 0.145,
         // top : height * 0.055,
         // top: height * 0.18 - height * 0.125,
         left : '10%',
-        // left: '5.5%',
         // right : '10%',
         // left : '8%',
       },
 
       gestock: {
         position: 'absolute',
-        width: 'auto',
-        height: 'auto',
-        // left: '11%',
-        // left: '28%',
-        top : height * 0.18 - height * 0.1,
-        // top: height * 0.18 - height * 0.075,
-        fontSize: height * 0.02,
-        Lineheight: 53,
-        // fontWeight: 'semi-bold',
-        color: '#FFFFFF',
-        alignSelf: 'center',
+          width: 'auto',
+          height: 'auto',
+          // left: '11%',
+          // left: '28%',
+          top : height * 0.18 - height * 0.1,
+          // top: height * 0.18 - height * 0.075,
+          fontSize: height * 0.02,
+          Lineheight: 53,
+          // fontWeight: 'semi-bold',
+          color: '#FFFFFF',
+          alignSelf: 'center',
       },
       });
       
@@ -109,7 +107,7 @@ export default function HeaderHome (name){
             <View style={styles.cercle_bas}></View>
             
             <TouchableOpacity onPress={ProfilPress} style={styles.utilisateur}>
-              <Image source={require('../../../img/utilisateur3.png')} style={styles.utilisateur}/> 
+              <Image source={require('../../../img/utilisateur.png')} style={styles.utilisateur}/> 
             </TouchableOpacity>
 
             {/* <Text style={styles.text}>{Name}</Text> */}

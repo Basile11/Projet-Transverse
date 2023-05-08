@@ -1,9 +1,6 @@
-import React, {useState, useEffect, lazy} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ImageBackground, Image, StyleSheet, Text, View, Dimensions, TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-import Searchbar from './Searchbar';
-// const Profil = lazy(() => import('../../screen/Profil/Profil'));
 
 
 export default function HeaderRest ({name}){    
@@ -12,7 +9,7 @@ export default function HeaderRest ({name}){
 
     const navigation = useNavigation();
       const ProfilPress = () => {
-        navigation.navigate('Profil');
+        navigation.navigate(Option);
       }
     
 
@@ -27,8 +24,8 @@ export default function HeaderRest ({name}){
             width: width,
             height: 'auto',
             textAlign: 'center',
-            top: height * 0.18 - height * 0.03,
-            fontSize: height * 0.043,
+            top: height * 0.18 - height * 0.035,
+            fontSize: height * 0.045,
             Lineheight: 53,
             fontWeight: 'semi-bold',
             color: '#FFFFFF',
@@ -70,24 +67,12 @@ export default function HeaderRest ({name}){
           backgroundColor: '#F5F5F5',
       },
 
-      // Profil: {
-      //   position: 'absolute',
-      //   height : height * 0.06,
-      //   width : height * 0.06,
-      //   top : height * 0.035,
-      //   left : '10%',
-      // },
-
-      utilisateur: {
+      Profil: {
         position: 'absolute',
-        height : height * 0.055,
-        width : height * 0.055,
-        top : height * 0.18 - height * 0.143,
-        // top : height * 0.055,
-        // top: height * 0.18 - height * 0.125,
+        height : height * 0.06,
+        width : height * 0.06,
+        top : height * 0.035,
         left : '10%',
-        // right : '10%',
-        // left : '8%',
       },
       });
       
@@ -101,14 +86,13 @@ export default function HeaderRest ({name}){
             <View style={styles.cercle_haut}></View>
             <View style={styles.cercle_bas}></View>
 
+            {/* <View style={styles.text}>
+                <Text>{name}</Text>    
+            </View> */}
+
             <Text style={styles.text}>{name}</Text>
-            
-            <TouchableOpacity onPress={ProfilPress} style={styles.utilisateur}>
-              <Image source={require('../../../img/utilisateur3.png')} style={styles.utilisateur}/> 
-            </TouchableOpacity>
 
-            <Searchbar/>
-
+            {/* <Text style={styles.text}>Le Train Bleu</Text> */}
 
         </View>
     );
