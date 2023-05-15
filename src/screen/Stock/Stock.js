@@ -1,11 +1,14 @@
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Button, useState } from 'react-native';
 import Searchbar from '../../components/Header/Searchbar.js';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useNavigation } from '@react-navigation/core';
-
+import { firebase, app } from '../../../config.js'
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
 
 import Cave from './Cave/Cave.js';
+import Biere from './Biere/Biere.js'
 
 import HeaderRest from '../../components/Header/HeaderRest.js';
 import Footer from '../../components/Footer/Footer.js';
@@ -14,7 +17,24 @@ import ButtonHome from '../../components/ButtonHome/ButtonHome.js';
 
 
 export default function Stock() {
+
   const navigation = useNavigation();
+  const [data, setData] = React.useState(null);
+  useEffect(() => {
+    // CHEMIN D'ACCES
+    const collectionRef = firebase.firestore().collection('/Bars/Le Train bleu/Stock');
+  
+    collectionRef
+      .get()
+      .then((querySnapshot) => {
+        const documentNames = querySnapshot.docs.map((doc) => doc.id);
+        console.log('Noms des documents dans la sous-collection Stock:', documentNames);
+        setData(documentNames);
+      })
+      .catch((error) => {
+        console.log('Erreur lors de la récupération des noms des documents:', error);
+      });
+  }, []);
 
   const CavePress = () => {
     navigation.navigate(Cave);
@@ -89,8 +109,15 @@ export default function Stock() {
           <Text>Cliquez ici</Text>
         </TouchableOpacity> */}
 
-        
-
+      <View>
+        {data && (
+        <View>
+            {data.map((category, index) => (
+              <Text key={index}>{category}</Text>
+            ))}
+          </View>
+          )}
+          </View>
         
         <View style={styles.footer}>
           <Footer color='#F5F5F5'/>
