@@ -171,7 +171,7 @@ export default function ButtonHome({text, onPress, img, color}) {
           </TouchableOpacity>
         
         ) : texte === 'Soft' ?(
-          <TouchableOpacity onPress={onPress} style={{borderBottomLeftRadius: height*0.05, ...styles.button}}>
+          <TouchableOpacity onPress={Soft} style={{borderBottomLeftRadius: height*0.05, ...styles.button}}>
             <View>
             <View style={{backgroundColor: '#97B5EB', borderBottomLeftRadius: height*0.035, ...styles.cadre}}>
                 <Image source={require('../../../img/jus.png')}

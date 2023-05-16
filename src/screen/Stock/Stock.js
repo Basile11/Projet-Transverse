@@ -11,8 +11,6 @@ import Soft from './Soft/Soft.js';
 import Cave from './Cave/Cave.js';
 import Biere from './Biere/Biere.js';
 import Spiritueux from './Spiritueux/Spiritueux.js';
-import Soft from './Soft/Soft.js';;
-import Spiritueux from "./Spiritueux/Spiritueux";
 
 import HeaderRest from '../../components/Header/HeaderRest.js';
 import Footer from '../../components/Footer/Footer.js';
