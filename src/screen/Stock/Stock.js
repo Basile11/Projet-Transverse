@@ -7,10 +7,12 @@ import { firebase, app } from '../../../config.js'
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
+import Soft from './Soft/Soft.js';
 import Cave from './Cave/Cave.js';
 import Biere from './Biere/Biere.js';
 import Spiritueux from './Spiritueux/Spiritueux.js';
-import Soft from './Soft/Soft.js';
+import Soft from './Soft/Soft.js';;
+import Spiritueux from "./Spiritueux/Spiritueux";
 
 import HeaderRest from '../../components/Header/HeaderRest.js';
 import Footer from '../../components/Footer/Footer.js';
@@ -115,14 +117,8 @@ export default function Stock() {
   });
 
   return (
-    <View>
-      <View style={[styles.container]}> 
-        
-        {/* <Button style={styles.button} title="Go to Cave" onPress={() => navigation.navigate(Cave)}  /> */}
 
-        {/* <TouchableOpacity style={styles.button} onPress={CavePress}>
-          <Text>Cliquez ici</Text>
-        </TouchableOpacity> */}
+      <View style={[styles.container]}>
 
         
         <View style={styles.footer}>
@@ -150,7 +146,6 @@ export default function Stock() {
           )}
         </View>
       </View>
-    </View>
 
   );
 }
