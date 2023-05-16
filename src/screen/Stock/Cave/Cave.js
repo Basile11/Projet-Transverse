@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, TextInput,Button, useState } from 'react-native';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useNavigation } from '@react-navigation/core';
 
 
@@ -8,6 +8,17 @@ import HeaderRest from '../../../components/Header/HeaderRest.js';
 import Footer from '../../../components/Footer/Footer.js';
 
 import Vin from './Vin/Vin.js';
+
+
+
+import { firebase, app } from '../../../../config.js'
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+
+import Biere from '../Biere/Biere.js'
+
+
+
 
 const DATA = [
     { id: '1', title: 'Vin 1', stock: '10', year: '2019', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
@@ -29,7 +40,33 @@ const Cave = () => {
   // const VinPress = () => {
   //   navigation.navigate(Vin, {name: item.title, stock: item.stock,yYear: item.year, description: item.descr, limit: item.limit, image: item.image});
   // }
+  const [data, setData] = React.useState(null);
 
+  React.useEffect(() => {
+    const collectionRef = firebase
+      .firestore()
+      .collection('Bars')
+      .doc('Le Train bleu')
+      .collection('Stock')
+      .doc('Cave')
+      .collection('sous-collection');
+  
+    collectionRef
+      .get()
+      .then((querySnapshot) => {
+        const documentNames = querySnapshot.docs.map((doc) => doc.id);
+        console.log('Noms des documents dans la sous-collection Stock:', documentNames);
+        setData(documentNames);
+      })
+      .catch((error) => {
+        console.log('Erreur lors de la récupération des noms des documents:', error);
+      });
+  }, []);
+
+
+
+
+// style
   const styles = StyleSheet.create({
     container: {
       backgroundColor : '#F5F5F5',
@@ -129,6 +166,11 @@ const Cave = () => {
     },
 
   });
+
+
+
+
+  
 
   const renderItem = ({ item }) => (
     //A modifier pour le style du dernier item

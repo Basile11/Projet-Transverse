@@ -10,6 +10,10 @@ export default function Vin({route}) {
   const {name, stock, year, description, limit, image} = route.params;
   const { width, height } = Dimensions.get('window');
 
+
+
+
+  //style
   const styles = StyleSheet.create({
     container: {
       flex: 1,

@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/core';
 import { StyleSheet, Text, View, Dimensions, FlatList, TouchableOpacity } from 'react-native';
 
 import Footer from '../../components/Footer/Footer.js';
+import Signin from '../../components/Firebase/signin.js';
 
 const PARAM = [
   { id: '1', title: 'Général'},
@@ -79,13 +80,15 @@ export default function Option() {
 
   return (
     <View style={[styles.container]}> 
-        
+        <Signin/>
         <View style={styles.footer}>
             <Footer color='black'/>
+            
         </View> 
         <View style={styles.page}>
             <Text style={styles.title}>Paramètres </Text>
         </View>
+        
         <FlatList
           data={PARAM}
           renderItem={renderItem}
