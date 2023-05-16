@@ -1,10 +1,26 @@
-import { View, Image, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
+import { View, Image, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native'
 import React, { useState }from 'react';
+import { useNavigation } from '@react-navigation/core';
+
 
 export default function ButtonHome({text, onPress, img, color}) {
   const [texte] = useState(text);
   const image = "../../../img/"+img;
   const { width, height } = Dimensions.get('window');
+
+  const navigation = useNavigation();
+  const Cave = () => {
+    navigation.navigate(Cave);
+  }
+  const Biere = () => {
+    navigation.navigate(Biere);
+  }
+  const Alcool_fort = () => {
+    navigation.navigate('Spiritueux');
+  }
+  const Soft = () => {
+    navigation.navigate(Soft);
+  }
 
   const styles = StyleSheet.create({
     container: {
@@ -23,6 +39,7 @@ export default function ButtonHome({text, onPress, img, color}) {
       alignContent: 'center',
       paddingLeft:'6%',
       alignItems: 'center',
+      // left : '6%',
     },
   
     cadre: {
@@ -125,12 +142,14 @@ export default function ButtonHome({text, onPress, img, color}) {
             <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
           </TouchableOpacity>
 
+
+
         ) : texte === 'Cave' ?(
-            <TouchableOpacity onPress={onPress} style={styles.button}>
+            <TouchableOpacity onPress={Cave} style={styles.button}>
               <View>
                 <View style={{backgroundColor: '#B83052', ...styles.cadre}}>
-                  <Image source={require('../../../img/stats.png')}
-                  style={{ width: '50%', height: '50%'}}
+                  <Image source={require('../../../img/Vin.png')}
+                  style={{ width: '60%', height: '60%'}}
                   />
                 </View>
                 <Text style={styles.text}>{text}</Text>
@@ -138,6 +157,44 @@ export default function ButtonHome({text, onPress, img, color}) {
               <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
             </TouchableOpacity>
   
+        ) : texte === 'Bière' ?(
+          <TouchableOpacity onPress={Biere} style={styles.button}>
+            <View>
+              <View style={{backgroundColor: '#FFEFD7', ...styles.cadre}}>
+                <Image source={require('../../../img/biere.png')}
+                style={{ width: '50%', height: '50%', left: '4%'}}
+                />
+              </View>
+              <Text style={styles.text}>{text}</Text>
+            </View>
+            <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
+          </TouchableOpacity>
+        
+        ) : texte === 'Soft' ?(
+          <TouchableOpacity onPress={onPress} style={{borderBottomLeftRadius: height*0.05, ...styles.button}}>
+            <View>
+            <View style={{backgroundColor: '#97B5EB', borderBottomLeftRadius: height*0.035, ...styles.cadre}}>
+                <Image source={require('../../../img/jus.png')}
+                style={{ width: '50%', height: '50%', right: '3%'}}
+                />
+              </View>
+              <Text style={styles.text}>{text}</Text>
+            </View>
+            <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
+          </TouchableOpacity>
+
+        ) : texte === 'Alcool fort' ?(
+          <TouchableOpacity onPress={Alcool_fort} style={{borderTopLeftRadius: height*0.06, ...styles.button}}>
+            <View>
+              <View style={{backgroundColor: '#8B8479',borderTopLeftRadius: height*0.06, opacity: 0.8, ...styles.cadre}}>
+                <Image source={require('../../../img/verre.png')}
+                style={{ width: '50%', height: '50%'}}
+                />
+              </View>
+              <Text style={styles.text}>{text}</Text>
+            </View>
+            <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
+          </TouchableOpacity>
           ) : (
           <Text>Section introuvable</Text>
         )}

@@ -13,6 +13,10 @@ import Commande from './src/screen/Commande/Commande';
 import Cave from './src/screen/Stock/Cave/Cave';
 import Profil from './src/screen/Profil/Profil';
 import Vin from './src/screen/Stock/Cave/Vin/Vin';
+import Biere from './src/screen/Stock/Biere/Biere';
+import Spiritueux from './src/screen/Stock/Spiritueux/Spiritueux';
+import Soft from './src/screen/Stock/Soft/Soft';
+import Vin2 from './src/screen/Stock/Cave/TypeVin/Vin/Vin2';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -38,7 +42,10 @@ export default function App() {
         <Stack.Screen name="Stock" component={Stock}/>
         <Stack.Screen name="Cave" component={Cave}/>
         <Stack.Screen name="Vin" component={Vin}/>
-
+        <Stack.Screen name="Vin2" component={Vin2}/>
+        <Stack.Screen name="Biere" component={Biere}/>
+        <Stack.Screen name="Spiritueux" component={Spiritueux}/>
+        <Stack.Screen name="Soft" component={Soft}/>
 
       </Stack.Navigator>
     </NavigationContainer>

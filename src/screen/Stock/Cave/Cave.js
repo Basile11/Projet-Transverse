@@ -7,7 +7,9 @@ import { useNavigation } from '@react-navigation/core';
 import HeaderRest from '../../../components/Header/HeaderRest.js';
 import Footer from '../../../components/Footer/Footer.js';
 
-import Vin from './Vin/Vin.js';
+
+// import Vin from './TypeVin/Vin/Vin.js';
+// import Vin2 from './TypeVin/Vin/Vin2.js';
 
 
 
@@ -174,7 +176,7 @@ const Cave = () => {
 
   const renderItem = ({ item }) => (
     //A modifier pour le style du dernier item
-    <TouchableOpacity onPress={() => {navigation.navigate('Vin', {name: item.title, stock: item.stock, year: item.year, description: item.descr, limit: item.limit, image: item.image}); }}
+    <TouchableOpacity onPress={() => {navigation.navigate('Vin2', {name: item.title, stock: item.stock, year: item.year, description: item.descr, limit: item.limit, image: item.image}); }}
                       style={[styles.item, item.id==1 ? {borderTopLeftRadius:50, marginTop:height*0.012} : {borderTopLeftRadius:20}]}>
       <TextInput style={[styles.nbrstock, Number(item.stock)>Number(item.limit) ? {backgroundColor: '#89CD88'} : {backgroundColor: '#D55858'}]} 
                 placeholder={item.stock} 

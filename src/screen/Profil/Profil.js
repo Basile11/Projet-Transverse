@@ -53,6 +53,7 @@ export default function Profil() {
       backgroundColor : 'black',
     //   alignItems: 'center',
     },
+
     page: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -69,6 +70,7 @@ export default function Profil() {
         fontWeight: 'bold',
         textAligne : 'center',
     },
+    
     text: {  
         position: 'absolute',
         // top: height*0.4,

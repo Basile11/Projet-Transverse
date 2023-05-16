@@ -8,7 +8,9 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
 import Cave from './Cave/Cave.js';
-import Biere from './Biere/Biere.js'
+import Biere from './Biere/Biere.js';
+import Spiritueux from './Spiritueux/Spiritueux.js';
+import Soft from './Soft/Soft.js';
 
 import HeaderRest from '../../components/Header/HeaderRest.js';
 import Footer from '../../components/Footer/Footer.js';
@@ -36,8 +38,17 @@ export default function Stock() {
       });
   }, []);
 
-  const CavePress = () => {
+  const Cave = () => {
     navigation.navigate(Cave);
+  }
+  const Biere = () => {
+    navigation.navigate(Biere);
+  }
+  const Alcool_fort = () => {
+    navigation.navigate(Spiritueux);
+  }
+  const Soft = () => {
+    navigation.navigate(Soft);
   }
 
   const { width, height } = Dimensions.get('window');
@@ -73,15 +84,6 @@ export default function Stock() {
       color: '#97B5EB',
     },
   
-    button: {
-      flex : 1,
-      position: 'absolute',
-      top: height*0.26,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  
     footer: {
       position: 'absolute',
       bottom: 0,
@@ -97,6 +99,19 @@ export default function Stock() {
       height: 100,
       backgroundColor: 'red',
     },
+
+    buttonview: {
+      position: 'absolute',
+      top: height*0.26,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      // backgroundColor: 'red',
+    },
+
+    buttonview2: {
+      width: '100%',
+    },
   });
 
   return (
@@ -109,15 +124,6 @@ export default function Stock() {
           <Text>Cliquez ici</Text>
         </TouchableOpacity> */}
 
-      <View>
-        {data && (
-        <View>
-            {data.map((category, index) => (
-              <Text key={index}>{category}</Text>
-            ))}
-          </View>
-          )}
-          </View>
         
         <View style={styles.footer}>
           <Footer color='#F5F5F5'/>
@@ -127,10 +133,22 @@ export default function Stock() {
           <HeaderRest name='Stock'/>
         </View>
 
-        <View style={styles.button}>
+        {/* <View style={styles.button}>
           <ButtonHome text='Cave' onPress={CavePress} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
-        </View>
+        </View> */}
 
+        <View style={styles.buttonview}>
+        {/* <View> */}
+          {data && (
+            <View style={styles.buttonview2}>
+              {data.map((category, index) => (
+                // <Text key={index}>{category} {index}</Text>
+                // <ButtonHome text={category} onPress={category} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'
+                <ButtonHome key={category.id} text={category} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
+              ))}
+            </View>
+          )}
+        </View>
       </View>
     </View>
 
