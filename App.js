@@ -10,7 +10,10 @@ import Stock from './src/screen/Stock/Stock'
 import Historique from './src/screen/Historique/Historique'
 import Stats from './src/screen/Statistiques/Stats';
 import Commande from './src/screen/Commande/Commande';
+import Biere from './src/screen/Stock/Biere/Biere';
 import Cave from './src/screen/Stock/Cave/Cave';
+import Soft from './src/screen/Stock/Soft/Soft';
+import Spiritueux from "./src/screen/Stock/Spiritueux/Spiritueux";
 import Profil from './src/screen/Profil/Profil';
 import Vin from './src/screen/Stock/Cave/Vin/Vin';
 
@@ -36,8 +39,11 @@ export default function App() {
         <Stack.Screen name="Scan" component={Scan} />
 
         <Stack.Screen name="Stock" component={Stock}/>
+        <Stack.Screen name="Biere" component={Biere}/>
         <Stack.Screen name="Cave" component={Cave}/>
         <Stack.Screen name="Vin" component={Vin}/>
+        <Stack.Screen name="Soft" component={Soft}/>
+        <Stack.Screen name="Spiritueux" component={Spiritueux}/>
 
 
       </Stack.Navigator>

@@ -138,7 +138,46 @@ export default function ButtonHome({text, onPress, img, color}) {
               <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
             </TouchableOpacity>
   
-          ) : (
+          ) : texte === 'Soft' ?(
+            <TouchableOpacity onPress={onPress} style={styles.button}>
+              <View>
+                <View style={{backgroundColor: '#B83052', ...styles.cadre}}>
+                  <Image source={require('../../../img/stats.png')}
+                         style={{ width: '50%', height: '50%'}}
+                  />
+                </View>
+                <Text style={styles.text}>{text}</Text>
+              </View>
+              <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
+            </TouchableOpacity>
+
+        ): texte === 'Biere' ?(
+            <TouchableOpacity onPress={onPress} style={styles.button}>
+              <View>
+                <View style={{backgroundColor: '#B83052', ...styles.cadre}}>
+                  <Image source={require('../../../img/stats.png')}
+                         style={{ width: '50%', height: '50%'}}
+                  />
+                </View>
+                <Text style={styles.text}>{text}</Text>
+              </View>
+              <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
+            </TouchableOpacity>
+
+        ): texte === 'Alcool Fort' ?(
+            <TouchableOpacity onPress={onPress} style={styles.button}>
+              <View>
+                <View style={{backgroundColor: '#B83052', ...styles.cadre}}>
+                  <Image source={require('../../../img/stats.png')}
+                         style={{ width: '50%', height: '50%'}}
+                  />
+                </View>
+                <Text style={styles.text}>{text}</Text>
+              </View>
+              <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
+            </TouchableOpacity>
+
+        ) : (
           <Text>Section introuvable</Text>
         )}
       </View>

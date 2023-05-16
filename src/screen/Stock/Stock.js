@@ -7,8 +7,10 @@ import { firebase, app } from '../../../config.js'
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
+import Soft from './Soft/Soft.js';
 import Cave from './Cave/Cave.js';
-import Biere from './Biere/Biere.js'
+import Biere from './Biere/Biere.js';
+import Spiritueux from "./Spiritueux/Spiritueux";
 
 import HeaderRest from '../../components/Header/HeaderRest.js';
 import Footer from '../../components/Footer/Footer.js';
@@ -36,8 +38,17 @@ export default function Stock() {
       });
   }, []);
 
+  const BierePress = ()  => {
+    navigation.navigate(Biere);
+  }
   const CavePress = () => {
     navigation.navigate(Cave);
+  }
+  const SoftPress = () => {
+    navigation.navigate(Soft);
+  }
+  const SpiritueuxPress = () => {
+    navigation.navigate(Spiritueux);
   }
 
   const { width, height } = Dimensions.get('window');
@@ -100,8 +111,18 @@ export default function Stock() {
   });
 
   return (
-    <View>
-      <View style={[styles.container]}> 
+
+      <View style={[styles.container]}>
+
+        <View>
+          {data && (
+              <View>
+                {data.map((category, index) => (
+                    <Text key={index}>{category}</Text>
+                ))}
+              </View>
+          )}
+        </View>
         
         {/* <Button style={styles.button} title="Go to Cave" onPress={() => navigation.navigate(Cave)}  /> */}
 
@@ -109,16 +130,8 @@ export default function Stock() {
           <Text>Cliquez ici</Text>
         </TouchableOpacity> */}
 
-      <View>
-        {data && (
-        <View>
-            {data.map((category, index) => (
-              <Text key={index}>{category}</Text>
-            ))}
-          </View>
-          )}
-          </View>
-        
+
+
         <View style={styles.footer}>
           <Footer color='#F5F5F5'/>
         </View>
@@ -128,11 +141,14 @@ export default function Stock() {
         </View>
 
         <View style={styles.button}>
+          <ButtonHome text='Alcool Fort' onPress={SpiritueuxPress} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
+          <ButtonHome text='Biere' onPress={BierePress} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
           <ButtonHome text='Cave' onPress={CavePress} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
+          <ButtonHome text='Soft' onPress={SoftPress} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
+
         </View>
 
       </View>
-    </View>
 
   );
 }
