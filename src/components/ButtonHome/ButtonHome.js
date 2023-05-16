@@ -97,7 +97,7 @@ export default function ButtonHome({text, onPress, img, color}) {
               <Text style={styles.text}>{text}</Text>
             </View>
             <Image source={require('../../../img/fleche.png')} style={styles.fleche}/>
-          </TouchableOpacity>
+          </TouchableOpacity> 
 
         ) : texte === 'Historique' ?(
           <TouchableOpacity onPress={onPress} style={styles.button}>
