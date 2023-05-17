@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Image, Dimensions, TextInput, Button, Touchable
 import { useRoute, useEffect } from '@react-navigation/core';
 import React from 'react';
 
-import HeaderVin from '../../../../components/Header/HeaderVin.js';
-import Footer from '../../../../components/Footer/Footer.js';
+import HeaderVin from '../../../../../components/Header/HeaderVin.js';
+import Footer from '../../../../../components/Footer/Footer.js';
 
 export default function Vin({route}) {
   const {name, stock, year, description, limit, image} = route.params;

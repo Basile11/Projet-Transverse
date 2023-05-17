@@ -30,11 +30,11 @@ export default function Stock() {
       .get()
       .then((querySnapshot) => {
         const documentNames = querySnapshot.docs.map((doc) => doc.id);
-        console.log('Noms des documents dans la sous-collection Stock:', documentNames);
+        // console.log('Noms des documents dans la sous-collection Stock:', documentNames);
         setData(documentNames);
       })
       .catch((error) => {
-        console.log('Erreur lors de la récupération des noms des documents:', error);
+        // console.log('Erreur lors de la récupération des noms des documents:', error);
       });
   }, []);
 
@@ -135,10 +135,10 @@ export default function Stock() {
         {/* <View> */}
           {data && (
             <View style={styles.buttonview2}>
-              {data.map((category, index) => (
+              {data.map((category) => (
                 // <Text key={index}>{category} {index}</Text>
                 // <ButtonHome text={category} onPress={category} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'
-                <ButtonHome key={category.id} text={category} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
+                <ButtonHome key={category} text={category} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>
               ))}
             </View>
           )}

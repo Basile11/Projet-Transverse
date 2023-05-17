@@ -7,7 +7,7 @@ import HeaderVin from '../../../../../components/Header/HeaderVin.js';
 import Footer from '../../../../../components/Footer/Footer.js';
 
 export default function Vin2({route}) {
-  const {name, stock, year, description, limit, image} = route.params;
+  const {name, stock, year, description, limit, image, prix, mail} = route.params;
   const { width, height } = Dimensions.get('window');
 
 
@@ -71,12 +71,12 @@ export default function Vin2({route}) {
       height: height*0.05,
       textAlign: 'center',
     },
-    annee: {
+    prix: {
       position: 'absolute',
-      top: height*0.028,
-      left: height*0.04,
+      top: height*0.03,
+      left: height*0.05,
       fontWeight: 'bold',
-      fontSize: height*0.028,
+      fontSize: height*0.035,
     },
     viewdescr: {
       position: 'absolute',
@@ -161,10 +161,10 @@ export default function Vin2({route}) {
           {stock}
         </TextInput>
 
-        <Text style={styles.annee}>{year}</Text>
+        <Text style={styles.prix}>{prix} €</Text>
 
         <View style={styles.viewdescr}>
-          <Text style={styles.description}>{description}</Text>
+          <Text style={styles.description}>{description}{'\n\n'}{mail}</Text>
         </View>
 
         <View style={styles.viewbutton}>

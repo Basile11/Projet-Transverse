@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, TextInput,Button, useState } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, TextInput,Button } from 'react-native';
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigation } from '@react-navigation/core';
 
 
@@ -22,50 +22,46 @@ import Biere from '../Biere/Biere.js'
 
 
 
-const DATA = [
-    { id: '1', title: 'Vin 1', stock: '10', year: '2019', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-    { id: '2', title: 'Vin 2', stock: '13', year: '2010', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-    { id: '3', title: 'Vin 3', stock: '5', year: '2015', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-    { id: '4', title: 'Vin 4', stock: '10', year: '2012', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-    { id: '5', title: 'Vin 5', stock: '23', year: '2011', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-    { id: '6', title: 'Vin 6', stock: '23', year: '2011', descr:'Très bon vin blablabla', limit: '6', image: require('../../../../img/vin1.png') },
-    { id: '7', title: 'Vin 7', stock: '8', year: '2011', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-    { id: '8', title: 'Vin 8', stock: '43', year: '2011', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-    { id: '9', title: 'Vin 9', stock: '7', year: '2011', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-    { id: '10', title: 'Vin 10', stock: '23', year: '2011', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-    { id: '11', title: 'Vin 11', stock: '3', year: '2011', descr:'Très bon vin blablabla', limit: '10', image: require('../../../../img/vin1.png') },
-  ];
-
 const Cave = () => {
   const { width, height } = Dimensions.get('window');
   const navigation = useNavigation();
-  // const VinPress = () => {
-  //   navigation.navigate(Vin, {name: item.title, stock: item.stock,yYear: item.year, description: item.descr, limit: item.limit, image: item.image});
-  // }
-  const [data, setData] = React.useState(null);
 
-  React.useEffect(() => {
-    const collectionRef = firebase
-      .firestore()
-      .collection('Bars')
-      .doc('Le Train bleu')
-      .collection('Stock')
-      .doc('Cave')
-      .collection('sous-collection');
+  const [data, setData] = useState([]);
+  const [documentName, setDocumentName] = useState('Vin Rouge');
+  // const [users, setUser] = useState([]);
+  const todosRef = firebase.firestore().collection('Bars').doc('Le Train bleu').collection('Stock').doc('Cave').collection(documentName);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const querySnapshot = await todosRef.get();
+      const users = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setData(users);
+    };
   
-    collectionRef
-      .get()
-      .then((querySnapshot) => {
-        const documentNames = querySnapshot.docs.map((doc) => doc.id);
-        console.log('Noms des documents dans la sous-collection Stock:', documentNames);
-        setData(documentNames);
-      })
-      .catch((error) => {
-        console.log('Erreur lors de la récupération des noms des documents:', error);
-      });
-  }, []);
+    fetchData();
+  }, [documentName]);
 
 
+  const Blanclist = async() => {
+    try {
+      setDocumentName('Vin blanc');
+    }
+    catch (e) {
+      console.log(e);
+    }
+  };
+  
+  const Rougelist = async() => { 
+    try {
+      setDocumentName('Vin rouge');
+    }
+    catch (e) {
+      console.log(e);
+    }
+  };
 
 
 // style
@@ -82,7 +78,7 @@ const Cave = () => {
     
     flatList: {
         position: 'absolute',
-        top: height*0.22,
+        top: height*0.3,
         bottom: height*0.095,
         flex: 1,
         // width: width * 0.85,
@@ -90,14 +86,17 @@ const Cave = () => {
 
         // left: width*0.075,
         borderBottomLeftRadius: 90, 
-        borderTopLeftRadius: 90,
+        // borderTopLeftRadius: 90,
+        // backgroundColor: '#FFFFFF',
     },
     item: {
         position: 'relative',
+        // position: 'absolute',
         flexDirection: 'row',
         flex: 1,
         width: width * 0.85,
         height: height * 0.08,
+        height: height * 0.07,
         backgroundColor: '#FFFFFF',
         borderRadius: 20,
         // marginBottom: height * 0.01,
@@ -108,20 +107,18 @@ const Cave = () => {
         justifyContent: 'center',
         left: width*0.075,
         top: height*0.01,
+        // backgroundColor: 'red',
     },
     title: {
         position: 'absolute',
-        fontSize: height*0.023,
+        fontSize: height*0.02,
         left : width*0.2,
         fontWeight: 'bold',
-        top : height*0.015,
+        width: width*0.35,
+        // backgroundColor: 'red',
+        // top : height*0.015,
     },
-    year: {
-        position: 'absolute',
-        fontSize: height*0.018,
-        left : width*0.2,
-        top : height*0.045,
-    },
+  
     nbrstock: {
         position: 'absolute',
         left: width*0.055,
@@ -167,6 +164,33 @@ const Cave = () => {
         top: -height*0.004,
     },
 
+    viewbutton: {
+      position: 'absolute',
+      top: height*0.24,
+      // width: width*0.8,
+      // backgroundColor: '#89CD88',
+      flexDirection: 'row',
+      left: width*0.07,
+      right: width*0.07,
+    },
+    button: {
+      // position: 'absolute',
+      borderRadius: 30,
+      // width: width*0.3,
+      height: height*0.05,
+      width: width*0.4,
+      backgroundColor: 'white',
+      margin: width*0.01,
+      alignItems: 'center',
+      justifyContent: 'center',
+      // backgroundColor: '#89CD88',
+
+    },
+    textbut: {
+      fontSize: height*0.02,
+      fontWeight: 'bold',
+    },
+
   });
 
 
@@ -176,14 +200,16 @@ const Cave = () => {
 
   const renderItem = ({ item }) => (
     //A modifier pour le style du dernier item
-    <TouchableOpacity onPress={() => {navigation.navigate('Vin2', {name: item.title, stock: item.stock, year: item.year, description: item.descr, limit: item.limit, image: item.image}); }}
-                      style={[styles.item, item.id==1 ? {borderTopLeftRadius:50, marginTop:height*0.012} : {borderTopLeftRadius:20}]}>
-      <TextInput style={[styles.nbrstock, Number(item.stock)>Number(item.limit) ? {backgroundColor: '#89CD88'} : {backgroundColor: '#D55858'}]} 
-                placeholder={item.stock} 
+    
+    <TouchableOpacity onPress={() => {navigation.navigate('Vin2', {name: item.Nom, stock: item.Stock, description: item.Description, limit: item.Limite, image: item.image, prix: item.Prix, mail:item.Mail}); }}
+    // <TouchableOpacity onPress={() => {navigation.navigate('Vin2', {name: item.Nom, stock: item.Stock.toString(), limit: item.Limite.toString()}); }}
+                      style={[styles.item, item.id==0 ? {borderTopLeftRadius:50, marginTop:height*0.012} : {borderTopLeftRadius:20}]}>
+      <TextInput style={[styles.nbrstock, item.Stock>item.Limite ? {backgroundColor: '#89CD88'} : {backgroundColor: '#D55858'}]} 
+                placeholder={item.Stock.toString()} 
                 placeholderTextColor={'black'}/>
      
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.year}>{item.year}</Text>
+      <Text style={styles.title}>{item.Nom}</Text>
+      {/* <Text style={styles.title}>{id}</Text> */}
       
       <TouchableOpacity style={styles.plus}>
         <Text style={styles.plusText}>+</Text>
@@ -207,15 +233,21 @@ const Cave = () => {
           <HeaderRest name='Cave'/>
         </View>
 
+        <View style={styles.viewbutton}>
+        <TouchableOpacity onPress={Rougelist} style={[{right:0}, styles.button, documentName==='Vin rouge' ? {borderBottomWidth: 3, borderColor: 'black'} : {}]}>
+            <Text style={styles.textbut}>Vin rouge</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Blanclist} style={[{right:0}, styles.button, documentName==='Vin blanc' ? {borderBottomWidth: 3, borderColor: 'black'} : {}]}>
+            <Text style={styles.textbut}>Vin blanc</Text>
+          </TouchableOpacity>
+        </View>
+
         <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            style={styles.flatList}
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          style={styles.flatList}
         />
-
-        
-
         
       </View>
     </View>
