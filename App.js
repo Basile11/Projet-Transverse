@@ -17,6 +17,7 @@ import Spiritueux from "./src/screen/Stock/Spiritueux/Spiritueux";
 import Profil from './src/screen/Profil/Profil';
 import Vin from './src/screen/Stock/Cave/TypeVin/Vin/Vin';
 import Vin2 from './src/screen/Stock/Cave/TypeVin/Vin/Vin2';
+import Auth from './src/screen/Auth/Auth';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -30,6 +31,7 @@ export default function App() {
         animation: 'none' 
         }}>
       
+        <Stack.Screen name="Auth" component={Auth}/>
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Option" component={Option} />
         <Stack.Screen name="Profil" component={Profil} />
