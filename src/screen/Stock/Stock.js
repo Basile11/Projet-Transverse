@@ -57,11 +57,6 @@ export default function Stock() {
     container: {
       backgroundColor : '#F5F5F5',
     },
-  
-    header: {
-      // position: 'absolute',
-      top: 0,
-    },
 
     name:{
       position: 'absolute',
@@ -84,13 +79,6 @@ export default function Stock() {
       color: '#97B5EB',
     },
   
-    footer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-    },
-
     Test: {
       position: 'absolute',
       top: height*0.5,
@@ -118,14 +106,9 @@ export default function Stock() {
 
       <View style={[styles.container]}>
 
-        
-        <View style={styles.footer}>
-          <Footer color='#F5F5F5'/>
-        </View>
+        <HeaderRest name='Stock' color='black'/>
+        <Footer color='black'/>
 
-        <View style={styles.header}>
-          <HeaderRest name='Stock'/>
-        </View>
 
         {/* <View style={styles.button}>
           <ButtonHome text='Cave' onPress={CavePress} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>

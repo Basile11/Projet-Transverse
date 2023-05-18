@@ -48,10 +48,11 @@ export default function Profil() {
       });
   }, []);
 
+
   const styles = StyleSheet.create({
     container: {
-      backgroundColor : 'black',
-    //   alignItems: 'center',
+      height: height,
+      backgroundColor:'black',
     },
 
     page: {
@@ -83,15 +84,14 @@ export default function Profil() {
         position: 'absolute',
         top: height*0.4,
     },
+
   
   });
   
   return (
     <View style={[styles.container]}> 
         
-        <View style={styles.footer}>
-            <Footer color='black'/>
-        </View> 
+
         {data && (
         <View style={styles.page}>
             <Text style={styles.title}>{data.Nom}</Text>    
