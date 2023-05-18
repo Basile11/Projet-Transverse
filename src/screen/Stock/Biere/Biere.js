@@ -91,12 +91,6 @@ const Biere = () => {
     container: {
       backgroundColor : '#F5F5F5',
     },  
-    footer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-    },
     
     flatList: {
         position: 'absolute',
@@ -255,13 +249,9 @@ const Biere = () => {
     <View>
       <View style={[styles.container]}> 
         
-        <View style={styles.footer}>
-          <Footer color='#F5F5F5'/>
-        </View>
-
-        <View style={styles.header}>
-          <HeaderRest name='Bières'/>
-        </View>
+        <HeaderRest name='Bières' color='black'/>
+        <Footer color='black'/>
+        
 
         {/* <FlatList
             data={users}

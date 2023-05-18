@@ -90,12 +90,6 @@ const Soft = () => {
     container: {
       backgroundColor : '#F5F5F5',
     },  
-    footer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-    },
     
     flatList: {
         position: 'absolute',
@@ -251,13 +245,8 @@ const Soft = () => {
     <View>
       <View style={[styles.container]}> 
         
-        <View style={styles.footer}>
-          <Footer color='#F5F5F5'/>
-        </View>
-
-        <View style={styles.header}>
-          <HeaderRest name='Soft'/>
-        </View>
+        <HeaderRest name='Soft' color='black'/>
+        <Footer color='black'/>
 
         <View style={styles.viewbutton}>
           <TouchableOpacity onPress={Juslist} style={[{right:0}, styles.button, documentName==='Jus' ? {borderBottomWidth: 3, borderColor: 'black'} : {}]}>
