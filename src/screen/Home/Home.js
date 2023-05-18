@@ -36,18 +36,8 @@ export default function Home() {
       backgroundColor : '#F5F5F5',
     },
   
-    header: {
-      top: 0,
-    },
-  
-    list: {
-      flex : 1,
-      position: 'absolute',
-      top: height*0.5,
-    },
   
     button: {
-      flex : 1,
       position: 'absolute',
       top: height*0.26,
       width: '100%',
@@ -55,27 +45,17 @@ export default function Home() {
       justifyContent: 'center',
     },
   
-    footer: {
-      flex : 1,
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-    },
   
   });
   
   return (
     <View style={[styles.container]}> 
       <StatusBar barStyle="light-content" />
-      <View style={styles.footer}>
-        {/* <FooterHome color='#F5F5F5'/> */}
-        <Footer color='#F5F5F5'/>
-      </View> 
+      <HeaderHome color='black' Name="Le Train Bleu"/>
+      <Footer color='black'/>
       
-      <View style={styles.header}>
-        <HeaderHome name='Le Train Bleu'/>
-      </View>
+      
+      
 
       <View style={styles.button}>
         <ButtonHome text='Stock' onPress={Stockpress} img={require('../../../img/product.png')} color='rgba(151, 181, 235, 0.5)'/>

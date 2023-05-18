@@ -21,6 +21,7 @@ export default function Option() {
 
   const styles = StyleSheet.create({
     container: {
+      height: height,
       backgroundColor : 'black',
     //   alignItems: 'center',
     },
@@ -81,10 +82,6 @@ export default function Option() {
   return (
     <View style={[styles.container]}> 
         <Signin/>
-        <View style={styles.footer}>
-            <Footer color='black'/>
-            
-        </View> 
         <View style={styles.page}>
             <Text style={styles.title}>Paramètres </Text>
         </View>

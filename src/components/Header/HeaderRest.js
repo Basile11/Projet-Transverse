@@ -6,7 +6,7 @@ import Searchbar from './Searchbar';
 // const Profil = lazy(() => import('../../screen/Profil/Profil'));
 
 
-export default function HeaderRest ({name}){    
+export default function HeaderRest ({color, name}){    
     const [Name] = useState(name);
     const { width, height } = Dimensions.get('window');
 
@@ -17,66 +17,58 @@ export default function HeaderRest ({name}){
     
 
     const styles = StyleSheet.create({
-        container: {
-          height : '100%',
-        },
-      
-        text: {
-            height : height,
-            position: 'absolute',
-            width: width,
-            height: 'auto',
-            textAlign: 'center',
-            top: height * 0.18 - height * 0.03,
-            fontSize: height * 0.043,
-            Lineheight: 53,
-            fontWeight: 'semi-bold',
-            color: '#FFFFFF',
-        },
-      
-        rect_haut_droit: {
-          position: 'absolute',
-          width: '100%',
-          height: '11%',
-          right: 0,
-          top: 0,
-          backgroundColor: '#2F3031',
-          backgroundColor: 'black',
+      container: {
+        height: height * 0.5,
+      },
+    
+      rect_haut_droit: {
+        position: 'absolute',
+        width: width,
+        height: height * 0.15,
+        right: 0,
+        top: 0,
+        backgroundColor: color,
       },
       
       rect_haut_gauche: {
           position: 'absolute',
-          width: "50%",
-          height: "32.5%",
+          width: width * 0.5,
+          height: height * 0.32,
           left: 0,
           top: 0,
-          backgroundColor: '#2F3031',
-          backgroundColor: 'black',
+          backgroundColor: color,
       },
       
       cercle_haut: {
-          width: '100%',
-          height: '22%',
-          borderRadius:90 ,
-          backgroundColor: '#2F3031',
-          backgroundColor: 'black',
+        position: 'absolute',
+        width: width,
+        height: height * 0.22,
+        borderRadius: 90 ,
+        backgroundColor: color,
       },
       
       cercle_bas: {
-          width: '100%',
-          height: '22%',
-          left: 0,
-          borderRadius: 90,
-          backgroundColor: '#F5F5F5',
+        position: 'absolute',
+        width: width,
+        height: height * 0.25,
+        top : height * 0.22,
+        left: 0,
+        borderRadius: 90,
+        backgroundColor: '#F5F5F5',
       },
 
-      // Profil: {
-      //   position: 'absolute',
-      //   height : height * 0.06,
-      //   width : height * 0.06,
-      //   top : height * 0.035,
-      //   left : '10%',
-      // },
+      text: {
+        height : height,
+        position: 'absolute',
+        width: width,
+        height: 'auto',
+        textAlign: 'center',
+        top: height * 0.18 - height * 0.03,
+        fontSize: height * 0.043,
+        Lineheight: 53,
+        fontWeight: 'semi-bold',
+        color: '#FFFFFF',
+      },
 
       utilisateur: {
         position: 'absolute',
@@ -89,7 +81,7 @@ export default function HeaderRest ({name}){
         // right : '10%',
         // left : '8%',
       },
-      });
+    });
       
 
     return (

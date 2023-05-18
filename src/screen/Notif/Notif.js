@@ -23,6 +23,7 @@ export default function Notif() {
 
   const styles = StyleSheet.create({
     container: {
+      height: height,
       backgroundColor : 'black',
     //   alignItems: 'center',
     },
@@ -121,9 +122,6 @@ export default function Notif() {
   return (
     <View style={[styles.container]}> 
         
-        <View style={styles.footer}>
-            <Footer color='black'/>
-        </View> 
         <View style={styles.page}>
             <Text style={styles.title}>Quoi de neuf ?</Text>
         </View>

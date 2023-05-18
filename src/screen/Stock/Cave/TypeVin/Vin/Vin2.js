@@ -18,22 +18,10 @@ export default function Vin2({route}) {
     container: {
       flex: 1,
       backgroundColor: '#F5F5F5',
-      alignItems: 'center',
       justifyContent: 'center',
-      // backgroundColor : 'red',
+      //backgroundColor : 'red',
     },
-    footer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-    },
-    header: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-    },
+    
     text: {
       position: 'absolute',
       top: 0,
@@ -144,13 +132,8 @@ export default function Vin2({route}) {
   return (
   <View style={styles.container}>
       
-      <View style={styles.footer}>
-        <Footer color='#F5F5F5'/>
-      </View>
-
-      <View style={styles.header}>
-        <HeaderVin name={name}/>
-      </View> 
+      <HeaderVin name={name} color='black'/>
+      <Footer color='black'/>
       
       {/* <View style={styles.viewimage}>
         <Image source={image} style={styles.Image}/>   
