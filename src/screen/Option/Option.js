@@ -25,6 +25,7 @@ export default function Option() {
       backgroundColor : 'black',
     },
 
+
     title: {
         position: 'absolute',
         top: height*0.13,
@@ -33,6 +34,7 @@ export default function Option() {
         fontWeight: 'bold',
         left: width*0.075,
     },
+
 
     flatList: {
       position: 'absolute',
@@ -46,6 +48,7 @@ export default function Option() {
       shadowRadius: 4,
     },
 
+
     item: {
       position: 'relative',
       flexDirection: 'row',
@@ -58,6 +61,7 @@ export default function Option() {
       borderBottomWidth: 2,
       borderColor: 'white',
     },
+    
     
     name: {
       position: 'absolute',
@@ -100,15 +104,50 @@ export default function Option() {
     });
   };
   
+  const renderItem = ({ item, index }) => {
+    const handleItemPress = () => {
+      if (index === PARAM.length - 1) {
+        SignOUT();
+      }
+      // Autres actions à effectuer pour les autres éléments de la liste
+    };
+  
+    return (
+      <TouchableOpacity style={styles.item} onPress={handleItemPress}>
+        <Text style={styles.name}>{item.title}</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  const SignOUT = () => {
+    // Logique de déconnexion ici
+    firebase.auth().signOut()
+    .then(() => {
+      // Déconnexion réussie
+      console.log('Utilisateur déconnecté');
+      
+      // navigation.navigate('Auth');
+      navigation.navigate(Auth);
+    })
+    .catch((error) => {
+      // Gestion des erreurs
+      console.log('Erreur lors de la déconnexion:', error);
+    });
+  };
+  
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Paramètres</Text>
-      <FlatList
-        data={PARAM}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        style={styles.flatList}
-      />
+    <View style={[styles.container]}> 
+        <Signin/>
+        <View style={styles.page}>
+            <Text style={styles.title}>Paramètres </Text>
+        </View>
+        
+        <FlatList
+          data={PARAM}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          style={styles.flatList}
+        />
     </View>
   );
 }
