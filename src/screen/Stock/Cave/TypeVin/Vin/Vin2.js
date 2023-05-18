@@ -175,7 +175,7 @@ export default function Vin2({route}) {
   return (
   <View style={styles.container}>
       
-      <HeaderVin name={name} color='black'/>
+      <HeaderVin name={documentData.Nom} color='black'/>
       <Footer color='black'/>
       
       {/* <View style={styles.viewimage}>
