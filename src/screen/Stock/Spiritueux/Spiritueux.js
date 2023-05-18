@@ -63,6 +63,29 @@ const Spiritueux = () => {
     }
   };
 
+  const updateStock = async (itemId, newStock) => {
+    try {
+      // Récupérer une référence au document dans la base de données
+      const stockRef = todosRef.doc(itemId);
+  
+      // Mettre à jour le champ "Stock" avec la nouvelle valeur
+      await stockRef.update({ Stock: newStock });
+  
+      // Mettre à jour l'état local avec la nouvelle valeur
+      const updatedData = data.map(item => {
+        if (item.id === itemId) {
+          return { ...item, Stock: newStock };
+        }
+        return item;
+      });
+      setData(updatedData);
+      console.log('Stock updated!');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+
 
 // style
   const styles = StyleSheet.create({
@@ -199,7 +222,7 @@ const Spiritueux = () => {
   const renderItem = ({ item }) => (
     //A modifier pour le style du dernier item
     
-    <TouchableOpacity onPress={() => {navigation.navigate('Vin2', {name: item.Nom, stock: item.Stock, description: item.Description, limit: item.Limite, image: item.image, prix: item.Prix, mail:item.Mail}); }}
+    <TouchableOpacity onPress={() => {navigation.navigate('Vin2', {doc1: 'Alcool fort', coll:documentName, doc2: item.Nom}); }}
     // <TouchableOpacity onPress={() => {navigation.navigate('Vin2', {name: item.Nom, stock: item.Stock.toString(), limit: item.Limite.toString()}); }}
                       style={[styles.item, item.id==0 ? {borderTopLeftRadius:50, marginTop:height*0.012} : {borderTopLeftRadius:20}]}>
       <TextInput style={[styles.nbrstock, item.Stock>item.Limite ? {backgroundColor: '#89CD88'} : {backgroundColor: '#D55858'}]} 
@@ -215,6 +238,22 @@ const Spiritueux = () => {
       <TouchableOpacity style={styles.moins}>
         <Text style={styles.moinsText}>-</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.plus}
+        onPress={() => {
+          const newStock = item.Stock + 1; // Augmenter le stock de 1
+          updateStock(item.id, newStock);}}>
+        <Text style={styles.plusText}>+</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.moins}
+        onPress={() => {
+          const newStock = item.Stock - 1; // Diminuer le stock de 1
+          updateStock(item.id, newStock);}}>
+        <Text style={styles.moinsText}>-</Text>
+      </TouchableOpacity>
+
       <TextInput style={styles.nbr} placeholder={'_'} placeholderTextColor={'black'} />
     </TouchableOpacity>
   );

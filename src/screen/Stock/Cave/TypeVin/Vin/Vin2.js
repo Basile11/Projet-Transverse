@@ -1,16 +1,58 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Dimensions, TextInput, Button, TouchableOpacity } from 'react-native';
-import { useRoute, useEffect } from '@react-navigation/core';
-import React from 'react';
+import { useRoute } from '@react-navigation/core';
+import React, {useState, useEffect} from 'react';
 
 import HeaderVin from '../../../../../components/Header/HeaderVin.js';
 import Footer from '../../../../../components/Footer/Footer.js';
 
+import { firebase, app } from '../../../../../../config.js'
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+
 export default function Vin2({route}) {
-  const {name, stock, year, description, limit, image, prix, mail} = route.params;
+  const {doc1, coll, doc2} = route.params;
   const { width, height } = Dimensions.get('window');
 
+  const [documentData, setDocumentData] = useState({});
 
+  const docRef = firebase.firestore().collection('Bars').doc('Le Train bleu').collection('Stock').doc(doc1).collection(coll).doc(doc2);
+
+
+  useEffect(() => {
+    getDocumentData();
+  }, []);
+
+  const getDocumentData = async () => {
+    try {
+      const docSnapshot = await docRef.get();
+  
+      // Vérifier si le document existe
+      if (docSnapshot) {
+        // Extraire les données du document
+        const data = docSnapshot.data();
+        setDocumentData(data);
+        
+      } else {
+        console.log('Le document n\'existe pas.');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateStock = async (itemId, newStock) => {
+    try {
+      await docRef.update({ Stock: newStock });
+
+      const updatedData = {...documentData, Stock: newStock};
+      setDocumentData(updatedData);
+  
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
 
 
   //style
@@ -132,7 +174,8 @@ export default function Vin2({route}) {
       fontWeight: 'bold',
       backgroundColor: '#F5F5F5',
       borderRadius: 30,
-      width: height*0.04,
+      marginRight: width*0.02,
+      // width: height*0.04,
       // textAlign: 'center',
     },
 
@@ -149,7 +192,7 @@ export default function Vin2({route}) {
       </View>
 
       <View style={styles.header}>
-        <HeaderVin name={name}/>
+        <HeaderVin name={documentData.Nom}/>
       </View> 
       
       {/* <View style={styles.viewimage}>
@@ -157,23 +200,35 @@ export default function Vin2({route}) {
       </View> */}
 
       <View style={styles.viewtext}>
-        <TextInput style={[styles.nbrstock, Number({stock})>Number({limit}) ? {backgroundColor: '#89CD88'} : {backgroundColor: '#D55858'}]} placeholderTextColor={'black'}>
+        {/* <TextInput style={[styles.nbrstock, Number({stock})>Number({limit}) ? {backgroundColor: '#89CD88'} : {backgroundColor: '#D55858'}]} placeholderTextColor={'black'}>
           {stock}
+        </TextInput> */}
+
+
+        <TextInput style={[styles.nbrstock, Number(documentData.Stock)>Number(documentData.Limite) ? {backgroundColor: '#89CD88'} : {backgroundColor: '#D55858'}]} placeholderTextColor={'black'}>
+          {documentData.Stock}
         </TextInput>
 
-        <Text style={styles.prix}>{prix} €</Text>
+        <Text style={styles.prix}>{documentData.Prix} €</Text>
 
         <View style={styles.viewdescr}>
-          <Text style={styles.description}>{description}{'\n\n'}{mail}</Text>
+          <Text style={styles.description}>{documentData.Description}{'\n\n'}{documentData.Mail}</Text>
         </View>
 
         <View style={styles.viewbutton}>
-          <TouchableOpacity style={[styles.button, {left:0, height:height*0.05, width:height*0.05}]}>
-            <Text style={styles.textbut}>+ 1</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, {height:height*0.05, width:height*0.05}]}>
+          <TouchableOpacity style={[styles.button, {left:0, height:height*0.05, width:height*0.05}]}
+                            onPress={() => {
+                              const newStock = documentData.Stock - 1; // Diminuer le stock de 1
+                              updateStock(documentData.id, newStock);}}>
             <Text style={styles.textbut}>- 1</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, {height:height*0.05, width:height*0.05}]}
+                            onPress={() => {
+                              const newStock = documentData.Stock + 1; // Augmenter le stock de 1
+                              updateStock(documentData.id, newStock);}}>
+            <Text style={styles.textbut}>+ 1</Text>
+          </TouchableOpacity>
+
           <TouchableOpacity style={[styles.button, {right:0, height:height*0.05, width:height*0.15, marginLeft: height*0.035}]}> 
             <Text style={styles.textbut}>Commander</Text>
           </TouchableOpacity>
@@ -181,7 +236,7 @@ export default function Vin2({route}) {
 
         <View style={styles.viewlimit}>
           <Text style={{fontSize:height*0.025}}> Limite de stock : </Text>
-          <TextInput style={styles.limit}> {limit}</TextInput>
+          <TextInput style={styles.limit}> {documentData.Limite}</TextInput>
         </View>
 
         <TouchableOpacity style={[styles.button, {top:height*0.58, height:height*0.04, width:height*0.15}]}>
