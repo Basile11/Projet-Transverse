@@ -73,12 +73,6 @@ const Cave = () => {
     container: {
       backgroundColor : '#F5F5F5',
     },  
-    footer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-    },
     
     flatList: {
         position: 'absolute',
@@ -199,13 +193,9 @@ const Cave = () => {
     <View>
       <View style={[styles.container]}> 
         
-        <View style={styles.footer}>
-          <Footer color='#F5F5F5'/>
-        </View>
+      <HeaderRest name='Cave' color='black'/>
+      <Footer color='black'/>
 
-        <View style={styles.header}>
-          <HeaderRest name='Cave'/>
-        </View>
 
         <FlatList
             data={DATA}

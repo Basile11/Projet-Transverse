@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Image, Dimensions, TextInput, Button, Touchable
 import { useRoute, useEffect } from '@react-navigation/core';
 import React from 'react';
 
-import HeaderVin from '../../../../components/Header/HeaderVin.js';
-import Footer from '../../../../components/Footer/Footer.js';
+import HeaderVin from '../../../../../components/Header/HeaderVin.js';
+import Footer from '../../../../../components/Footer/Footer.js';
 
 export default function Vin({route}) {
   const {name, stock, year, description, limit, image} = route.params;
@@ -22,18 +22,7 @@ export default function Vin({route}) {
       justifyContent: 'center',
       // backgroundColor : 'red',
     },
-    footer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-    },
-    header: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-    },
+
     text: {
       position: 'absolute',
       top: 0,
@@ -144,13 +133,8 @@ export default function Vin({route}) {
   return (
   <View style={styles.container}>
       
-      <View style={styles.footer}>
-        <Footer color='#F5F5F5'/>
-      </View>
-
-      <View style={styles.header}>
-        <HeaderVin name={name}/>
-      </View> 
+      <HeaderVin name={name} color='black'/>
+      <Footer color='black'/>
       
       {/* <View style={styles.viewimage}>
         <Image source={image} style={styles.Image}/>   

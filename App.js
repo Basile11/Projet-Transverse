@@ -15,7 +15,7 @@ import Cave from './src/screen/Stock/Cave/Cave';
 import Soft from './src/screen/Stock/Soft/Soft';
 import Spiritueux from "./src/screen/Stock/Spiritueux/Spiritueux";
 import Profil from './src/screen/Profil/Profil';
-import Vin from './src/screen/Stock/Cave/Vin/Vin';
+import Vin from './src/screen/Stock/Cave/TypeVin/Vin/Vin';
 import Vin2 from './src/screen/Stock/Cave/TypeVin/Vin/Vin2';
 
 export default function App() {
