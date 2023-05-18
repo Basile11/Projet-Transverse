@@ -6,11 +6,6 @@ import { firebase, app } from '../../../config.js'
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 
-import Footer from '../../components/Footer/Footer.js';
-
-
-
-
 
 export default function Auth() {
   const navigation = useNavigation();
