@@ -16,6 +16,7 @@ import Footer from '../../../components/Footer/Footer.js';
 import { firebase, app } from '../../../../config.js'
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import { onSnapshot } from 'firebase/compat/firestore';
 
 import Biere from '../Biere/Biere.js'
 
@@ -31,18 +32,31 @@ const Cave = () => {
   // const [users, setUser] = useState([]);
   const todosRef = firebase.firestore().collection('Bars').doc('Le Train bleu').collection('Stock').doc('Cave').collection(documentName);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const querySnapshot = await todosRef.get();
+  //     const users = querySnapshot.docs.map(doc => ({
+  //       id: doc.id,
+  //       ...doc.data()
+  //     }));
+  //     setData(users);
+  //   };
+  
+  //   fetchData();
+  // }, [documentName]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const querySnapshot = await todosRef.get();
-      const users = querySnapshot.docs.map(doc => ({
+    const unsubscribe = todosRef.onSnapshot(snapshot => {
+      const users = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       }));
       setData(users);
-    };
+    });
   
-    fetchData();
+    return () => unsubscribe();
   }, [documentName]);
+  
 
 
   const Blanclist = async() => {

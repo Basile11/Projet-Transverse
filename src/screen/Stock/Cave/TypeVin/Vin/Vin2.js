@@ -15,6 +15,9 @@ export default function Vin2({route}) {
   const { width, height } = Dimensions.get('window');
 
   const [documentData, setDocumentData] = useState({});
+  const [newLimit, setNewLimit] = useState('');
+  const [currentLimit, setCurrentLimit] = useState(documentData.Limite);
+
 
   const docRef = firebase.firestore().collection('Bars').doc('Le Train bleu').collection('Stock').doc(doc1).collection(coll).doc(doc2);
 
@@ -52,7 +55,18 @@ export default function Vin2({route}) {
       console.log(error);
     }
   };
+
+  const updateLimit = async (itemId, newLimit) => {
+    try {
+      await docRef.update({ Limite: newLimit });
+
+      const updatedData = {...documentData, Limite: newLimit};
+      setDocumentData(updatedData);
   
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   //style
@@ -155,21 +169,34 @@ export default function Vin2({route}) {
       left: width*0.07,
       right: width*0.07,
       flexDirection: 'row',
+      // backgroundColor: 'red'
     },
     limit: {
       //Adapter la largeur en fonction de la taille de la limite
       fontSize: height*0.025,
       fontWeight: 'bold',
-      backgroundColor: '#F5F5F5',
+      // backgroundColor: '#F5F5F5',
       borderRadius: 30,
-      marginRight: width*0.02,
+      marginRight: width*0.015,
+      marginLeft: width*0.015,
+      paddingLeft: width*0.008,
+      paddingRight: width*0.006,
       // width: height*0.04,
       // textAlign: 'center',
     },
-
-
-
-
+    maj: {
+      // position: 'absolute',
+      // top: height*0.55,
+      // left: width*0.07,
+      right: 0,
+      // flexDirection: 'row',
+      backgroundColor: 'black',
+      borderRadius: 30,
+      paddingLeft: width*0.02,
+      paddingRight: width*0.02,    
+      fontSize: height*0.01,
+      justifyContent: 'center',
+    },
   });
 
   return (
@@ -218,8 +245,29 @@ export default function Vin2({route}) {
         </View>
 
         <View style={styles.viewlimit}>
-          <Text style={{fontSize:height*0.025}}> Limite de stock : </Text>
-          <TextInput style={styles.limit}> {documentData.Limite}</TextInput>
+          <Text style={{fontSize:height*0.023}}> Limite de stock : </Text>
+          <TouchableOpacity style={[styles.maj, {marginLeft: width*0.02}]}
+                            onPress={() => {
+                              const newLimit = documentData.Limite - 1; // Diminuer la limite de 1
+                              updateLimit(documentData.id, newLimit);}}>
+            <Text style={[styles.textbut, { fontSize: height * 0.02 }]}>-1</Text>
+          </TouchableOpacity>
+          <TextInput 
+            style={styles.limit}
+            value={newLimit}> 
+              {documentData.Limite}
+          </TextInput>
+          <TouchableOpacity style={[styles.maj, {}]}
+                            onPress={() => {
+                              const newLimit = documentData.Limite + 1; // Augmenter la limite de 1
+                              updateLimit(documentData.id, newLimit);}}>
+            <Text style={[styles.textbut, { fontSize: height * 0.02 }]}>+1</Text>
+          </TouchableOpacity>
+
+
+          {/* <TouchableOpacity onPress={updateLimit} style={[styles.maj, {}]}>
+            <Text style={[styles.textbut, { fontSize: height * 0.02 }]}>Nouv.</Text>
+          </TouchableOpacity> */}
         </View>
 
         <TouchableOpacity style={[styles.button, {top:height*0.58, height:height*0.04, width:height*0.15}]}>
