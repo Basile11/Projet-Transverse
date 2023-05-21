@@ -267,7 +267,7 @@ const Cave = () => {
 
 
         <View style={styles.viewbutton}>
-        <TouchableOpacity onPress={Rougelist} style={[{right:0}, styles.button, documentName==='Vin rouge' ? {borderBottomWidth: 3, borderColor: 'black'} : {}]}>
+          <TouchableOpacity onPress={Rougelist} style={[{right:0}, styles.button, documentName==='Vin rouge' ? {borderBottomWidth: 3, borderColor: 'black'} : {}]}>
             <Text style={styles.textbut}>Vin rouge</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={Blanclist} style={[{right:0}, styles.button, documentName==='Vin blanc' ? {borderBottomWidth: 3, borderColor: 'black'} : {}]}>
